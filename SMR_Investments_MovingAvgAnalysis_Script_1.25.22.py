@@ -12,9 +12,7 @@ def grapher():
     today = today.strftime("%m-%d-%Y")
     
     #list of asset tickers
-    tickers = ['MSFT','AAPL','VOO','J','BXMT','BX','BNS','NIO','EIX', 'VYM',
-    'ABBV', 'AZN', 'RIO', 'GOLD','O', 'MAIN','BTC-USD', 'STWD', 'VCIT',
-    'TM', 'RTX','MA', 'SACH']
+    tickers = ['MSFT','AAPL','VOO']
     
     #loop through tickers, get data, and analyze
     for t in tickers:
