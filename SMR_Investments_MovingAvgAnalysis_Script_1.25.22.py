@@ -5,14 +5,25 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import date
+import os 
+
+#get todays date
+today = date.today()
+today = today.strftime("%m-%d-%Y")
+
+directory = r"C:\Users\srubin\OneDrive - INTERA Inc\Untitled Folder"
+os.chdir(directory)
+
+#create subdirectory based on the date
+if not os.path.exists(today):
+    os.makedirs(today)
 
 def grapher():
-    #get todays date
-    today = date.today()
-    today = today.strftime("%m-%d-%Y")
-    
+
     #list of asset tickers
-    tickers = ['MSFT','AAPL','VOO']
+    tickers = ['MSFT','AAPL','VOO','J','BXMT','BX','BNS','NIO','EIX', 'VYM',
+    'ABBV', 'AZN', 'RIO', 'GOLD','O', 'MAIN','BTC-USD', 'STWD', 'VCIT',
+    'TM', 'RTX','MA', 'SACH']
     
     #loop through tickers, get data, and analyze
     for t in tickers:
@@ -21,7 +32,7 @@ def grapher():
         print(ticker)
         v = yf.download(t)
         v = pd.DataFrame(v)
-    
+                    
         #Create Moving Averages
         SMA10 = v['Close'].rolling(window = 10).mean()
         SMA20 = v['Close'].rolling(window = 20).mean()
@@ -45,6 +56,6 @@ def grapher():
         plt.title(t + ": Moving Averages Analysis")
         plt.grid()
         #plt.show()
-        plt.savefig(t + "_" + "MovingAvgAnalysis_" + today +".png")
+        plt.savefig(today + "/"  + t + "_" + "MovingAvgAnalysis_" + today +".png")
         
 grapher()
